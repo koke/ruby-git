@@ -198,7 +198,10 @@ module Git
         current = m[1]
       end
       arr += list_files('heads').map { |f| [f, f == current] }
-      arr += list_files('remotes').map { |f| [f, false] }
+      begin
+        arr += list_files('remotes').map { |f| [f, false] }
+      rescue
+      end
       
       #command_lines('branch', '-a').each do |b| 
       #  current = false
